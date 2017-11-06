@@ -1,0 +1,487 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{caption,rotating}
+\usepackage{amsmath}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Assignment
+\end_layout
+
+\begin_layout Enumerate
+Bootstrap method is commonly used by applied economists.
+ Use the panel data provided, do the following estimations.
+ Note a constant is included in all 
+\begin_inset Formula $x$
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Load data1a_1b, estimate 
+\begin_inset Formula $y_{i1}=\beta x_{i1}+\varepsilon_{i1}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y_{it}=\beta x_{it}+\lambda_{i}+\varepsilon_{it}$
+\end_inset
+
+ (you can use difference in means method or treat 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ as a separate control)
+\end_layout
+
+\begin_layout Enumerate
+Load data1c.
+ Let's restrict to 
+\begin_inset Formula $y_{i1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{i1}$
+\end_inset
+
+ only, so we can treat them as 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+ Think of 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ as income of people.
+ Suppose 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is only observed if the person is employed (
+\begin_inset Formula $e_{i}=1$
+\end_inset
+
+).
+ Assume 
+\begin_inset Formula $e_{i}=\gamma_{0}+\gamma z_{i}+\xi_{i}>0$
+\end_inset
+
+, where 
+\begin_inset Formula $\xi_{i}\sim N(0,1)$
+\end_inset
+
+.
+ And also assume 
+\begin_inset Formula $\xi_{i}=\varepsilon_{i}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $y_{i}=\beta x_{i}+\varepsilon_{i}$
+\end_inset
+
+, use Heckit method to make inference of 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+use b = glmfit(z,e,'binomial','link','probit','constant','off') for probit
+ estimation of e on z.
+\end_layout
+
+\begin_layout Enumerate
+use glmval(b,z_x,'probit','constant','off') for fitting value from probit
+ estimation.
+\end_layout
+
+\begin_layout Enumerate
+Make sure when you do resampling, you are resampling on the person level
+ (i.e.
+ y, e, x, and z should remain the same for each individual)
+\end_layout
+
+\begin_layout Enumerate
+z corresponds to the whole sample, z_x corresponds to the subsample for
+ which we have observations on y, z_nx corresponds to the subsample for
+ which we do not have observations on y.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Load data1d.
+ Again consider 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ only, and 
+\begin_inset Formula $y_{i}=\beta x_{i}+\varepsilon_{i}$
+\end_inset
+
+, if 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is correlated to 
+\begin_inset Formula $\varepsilon_{i}$
+\end_inset
+
+, and 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ is the instrument, use IV method to make inference of 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Create your own function that generate \SpecialChar LaTeX
+ table.
+ It should be able to have the same basic functionality as commands commonly
+ used in STATA, and should be as autonomous as possible.
+ Test it on question 1.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+It should be able to allow users to add texts before and after the table.
+ And the main script should include this text.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Significance level: *10%, ** 5%, *** 1%
+\end_layout
+
+\begin_layout Enumerate
+Note that some special characteristics (e.g.
+ /) needs / in front to be recognized as special characteristics (e.g.
+ //).
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+There is one type of camera sold in a market over time.
+ Time is discrete with infinite horizon, 
+\begin_inset Formula $t=0,1,2,...$
+\end_inset
+
+ In each period, 
+\begin_inset Formula $m$
+\end_inset
+
+ cameras are supplied to the market.
+ The market participants consist of two types: the incumbents who stay on
+ after losing in previous auctions with probability 
+\begin_inset Formula $\rho$
+\end_inset
+
+, and 
+\begin_inset Formula $n$
+\end_inset
+
+ entrants who newly enter the market.
+ Incumbent buyers and new entrants has equal chance to be assigned to one
+ of the 
+\begin_inset Formula $m$
+\end_inset
+
+ auctions, so there is a chance that some of the auctions are empty.
+ Bidders do not know which auction they are in and how many people are bidding
+ against them.
+ But they do know the distribution of bidder's types which follows a normal
+ distribution with mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and standard error 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ If no bidders enters a particular auction, the auction is canceled.
+ Alternatively, if only one bidder is in an auction, the auction is canceled
+ as well (you can treat the bidder as losing in the auction).
+ After the auction, the winners exit with certainty, and the losers stay
+ with probability 
+\begin_inset Formula $\rho$
+\end_inset
+
+.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $m=10$
+\end_inset
+
+, 
+\begin_inset Formula $\rho=0.8$
+\end_inset
+
+, 
+\begin_inset Formula $n=15$
+\end_inset
+
+, bidder's valuation follows normal distribution with 
+\begin_inset Formula $\mu=200$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma=10$
+\end_inset
+
+.
+ Model this virtual auction economy, and plot the equilibrium bidding strategy
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The overall structure is the following:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Assume each individual bids his valuation (standard second price auction)
+\end_layout
+
+\begin_layout Enumerate
+Simulate Economy and collect bidding information
+\end_layout
+
+\begin_layout Enumerate
+Update optimal bidding information for each bidder
+\end_layout
+
+\begin_layout Enumerate
+Repeat Step B and C until bidding strategy converge
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use linspace(mu-5*sigma,mu+5*sigma,1000) to generate 1000 equally spaced
+ grid points of bidder valuations for bids comparison in i.D
+\end_layout
+
+\begin_layout Enumerate
+When you update optimal bidding information, instead of finding optimal
+ bidding strategy for each individual, you should use contraction mapping
+ to find optimal strategy.
+ Note that 
+\begin_inset Formula $b=v-v_{c}$
+\end_inset
+
+, that is, optimal bid is equal to valuation minus continuation value in
+ a second price type auction.
+ For any 
+\begin_inset Formula $v$
+\end_inset
+
+, start with a given 
+\begin_inset Formula $b$
+\end_inset
+
+, you should be able to calculate 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+ through state value, then you can update 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+For contraction mapping within each iteration, use maximal distance as the
+ measure.
+ For contraction mapping in step i.D, use average distance as the measure
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Now, suppose you as the camera producer, is interested in the distribution
+ of bidder's valuation, and would like to estimate 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ Using method of moments to make point estimate of parameters mentioned
+ in the question.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The moments you can use are average of winning bids and second bids, standard
+ deviation of wining and second bids.
+ Assume identity weight matrix
+\end_layout
+
+\begin_layout Enumerate
+You should use 10000 period with 500 burn-in period for this question
+\end_layout
+
+\begin_layout Enumerate
+A simple way of estimation is to simulate an economy with 
+\begin_inset Formula $\hat{\mu}=\text{avg}(\text{winning bid})$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\sigma}=\text{std}(\text{winning bid})$
+\end_inset
+
+, calculating moments, then you can scale up and scale down.
+ The more conservative way is to re-simulate the economy every time you
+ feed in a new pair of parameters.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Now the producer would like to know 
+\begin_inset Formula $p(\mu>198)$
+\end_inset
+
+, the probability that the valuation of an average person is higher than
+ the cost of camera, and 
+\begin_inset Formula $p(\sigma<9.5)$
+\end_inset
+
+, the tightness of the distribution.
+ In addition, the producer is also concerned with the data requirement for
+ this task.
+ Using bootstrap method for the question and generate a table with both
+ estimates and significance level (like the table found in economic journals),
+ for 1000,.
+ 2000, 3000 period for the analysis.
+ You have to use cluster to obtain the result.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

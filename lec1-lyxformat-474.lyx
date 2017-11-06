@@ -1,0 +1,1103 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usepackage{caption,rotating}
+
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Lecture 1: Fundamentals of Matlab
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Lec1
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Su, Danyang
+\end_layout
+
+\begin_layout Date
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Either use conference name or its abbreviation.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not really informative to the audience, more for people (including yourself)
+ who are reading the slides online
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+July 2016
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, should be abbreviation of conference name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+What Is Matlab:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+High-level programing language: between C++ and Stata
+\end_layout
+
+\begin_layout Itemize
+Commonly used in numerical analysis, and visualization.
+\end_layout
+
+\begin_layout Itemize
+Data are stored as matrices (for the purpose of this course)
+\end_layout
+
+\begin_layout Itemize
+Learning by doing
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Pros:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Vectorization
+\end_layout
+
+\begin_layout Itemize
+Powerful toolbox (including visualization, and optimization.
+\end_layout
+
+\begin_layout Itemize
+Relatively low cost of learning.
+ 
+\end_layout
+
+\begin_layout Itemize
+Flexible and consistent; good for DIY
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Cons:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Vectorization
+\end_layout
+
+\begin_layout Itemize
+Not fool-proof
+\end_layout
+
+\begin_layout Itemize
+Not fast enough
+\end_layout
+
+\begin_layout Itemize
+Not as specialized as Stata
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Types of files:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scripts: executable scripts
+\end_layout
+
+\begin_layout Itemize
+Functions: called scripts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Example: 1 + sqrt(2)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Data: affix .mat, store variables in workspace (save)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Interface:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Command window: for simple use
+\end_layout
+
+\begin_layout Itemize
+Text editors: create/edit .m file
+\end_layout
+
+\begin_layout Itemize
+Variable editors: display variables in 
+\series bold
+current
+\series default
+ workspace
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+variables:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+vectors
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+x = zeros(5,2) + 2*ones(5,2); 
+\end_layout
+
+\begin_layout LyX-Code
+%matrix size must matches.
+\end_layout
+
+\begin_layout LyX-Code
+y = zeros(4,1); 
+\end_layout
+
+\begin_layout LyX-Code
+%always preallocate variables
+\end_layout
+
+\begin_layout LyX-Code
+y(1) = 1; y(2:3) = 4; y(4) = []; y(5) = 2==3; 
+\end_layout
+
+\begin_layout LyX-Code
+%what does y look like?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Cells: a = cell(5); a{1} = `Name', a{2} = age;
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Basic Operations:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scalar operators: (+ - * / ^)
+\end_layout
+
+\begin_layout Itemize
+Matrix operators: (.* ./ * / .^ 
+\backslash
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quiz: How to express 
+\begin_inset Formula $X=(A)^{-1}B$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+If:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If arguments:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+if a<b
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+a = 1;
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+elseif a==b
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+a = 2;
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+else
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+a = 3;
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Iterations:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For Loop:
+\end_layout
+
+\begin_layout LyX-Code
+for i=1:size(x,1)
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+for j=1:size(x,2)
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+x(i,j) = (i-1)*size(x,2) + j;
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Iterations:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+While loop:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+dist = 1; %initial value must not satisfy condition
+\end_layout
+
+\begin_layout LyX-Code
+x0 = 1
+\end_layout
+
+\begin_layout LyX-Code
+while dist>0.01 %don't mess up the sign
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+x_new = 0.9*x0 + 0.1*f(x0);
+\end_layout
+
+\begin_layout LyX-Code
+dist = abs(x_new-x0); %remember abs
+\end_layout
+
+\begin_layout LyX-Code
+x0 = x_new; %don't mess up order
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Vectorization:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Try to vectorize whenever possible (mostly replace for loop):
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+y = 0;
+\end_layout
+
+\begin_layout LyX-Code
+for i=1:4
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+y = y + x1(i) + x2(i);
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\begin_layout LyX-Code
+y = x1*x2';
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Run Into Problem?:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+use function 
+\series bold
+help
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+help sum
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Google search
+\end_layout
+
+\begin_layout Itemize
+Read documentation
+\end_layout
+
+\begin_layout Itemize
+Ask your friends/me
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some Useful Commands:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+clc: clear display
+\end_layout
+
+\begin_layout Itemize
+clear: clear variables
+\end_layout
+
+\begin_layout Itemize
+clear all: clear more than just variables.
+\end_layout
+
+\begin_layout Itemize
+Ctrl+c: stop ongoing execution 
+\end_layout
+
+\begin_layout Itemize
+A(:,1) : 
+\begin_inset Quotes eld
+\end_inset
+
+:
+\begin_inset Quotes erd
+\end_inset
+
+ stands for all
+\end_layout
+
+\begin_layout Itemize
+A(index,end-1): index is a vector of indexes or logics, 
+\begin_inset Quotes eld
+\end_inset
+
+end-1
+\begin_inset Quotes erd
+\end_inset
+
+ second to last column
+\end_layout
+
+\begin_layout Itemize
+C = [A B]; C=[A;B]: append matrices 
+\end_layout
+
+\begin_layout Itemize
+kron(A,B): Kronecker product of A and B
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some Useful Commands:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a<=b: a less than or equal to b
+\end_layout
+
+\begin_layout Itemize
+a~=b: a not equal to b
+\end_layout
+
+\begin_layout Itemize
+a & b: and condition
+\end_layout
+
+\begin_layout Itemize
+a | b: or condition
+\end_layout
+
+\begin_layout Itemize
+~a: not condition
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some Useful Commands:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+eye(n): create identity matrix
+\end_layout
+
+\begin_layout Itemize
+diag(A): return diagonal of A
+\end_layout
+
+\begin_layout Itemize
+1:2:8: [1 3 5 7]: create a matrix that starts with 1 with interval 2, up
+ to 8.
+ Note that 8 is not 
+\end_layout
+
+\begin_layout Itemize
+isempty(A): whether elements in A are empty? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quiz: how to evaluate whether A is empty matrix?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+isnan(A):whether elements in A are NaN
+\end_layout
+
+\begin_layout Itemize
+ans: display most recently unassigned evaluation
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some Useful Commands:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+log(A): element by element log of A
+\end_layout
+
+\begin_layout Itemize
+exp(A), sqrt(A), abs(A)
+\end_layout
+
+\begin_layout Itemize
+ceil(A): round towards +inf
+\end_layout
+
+\begin_layout Itemize
+floor(A): round toward -inf
+\end_layout
+
+\begin_layout Itemize
+round(A): round toward nearest integer
+\end_layout
+
+\begin_layout Itemize
+norm(A): norm of A
+\end_layout
+
+\begin_layout Itemize
+sum(A,d), min(A), max(A)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Random Numbers:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+rng(1)
+\end_layout
+
+\begin_layout Itemize
+rand(n,m)
+\end_layout
+
+\begin_layout Itemize
+randn(n,m)
+\end_layout
+
+\begin_layout Itemize
+randsample(population,k,true,w)
+\end_layout
+
+\begin_layout Itemize
+mvnrnd(mu,sigma)
+\end_layout
+
+\begin_layout Itemize
+Quiz: how to generate binormial without using mvnrnd?
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\end_body
+\end_document

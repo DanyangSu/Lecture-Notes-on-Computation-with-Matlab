@@ -1,0 +1,333 @@
+%% LyX 2.2.0 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{beamer}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[authoryear]{natbib}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % this default might be overridden by plain title style
+ \newcommand\makebeamertitle{\frame{\maketitle}}%
+ % (ERT) argument for the TOC
+ \AtBeginDocument{%
+   \let\origtableofcontents=\tableofcontents
+   \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+   \def\gobbletableofcontents#1{\origtableofcontents}
+ }
+ \newenvironment{lyxcode}
+   {\par\begin{list}{}{
+     \setlength{\rightmargin}{\leftmargin}
+     \setlength{\listparindent}{0pt}% needed for AMS classes
+     \raggedright
+     \setlength{\itemsep}{0pt}
+     \setlength{\parsep}{0pt}
+     \normalfont\ttfamily}%
+    \def\{{\char`\{}
+    \def\}{\char`\}}
+    \def\textasciitilde{\char`\~}
+    \item[]}
+   {\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{caption,rotating}
+
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+
+\title[Lec1]{Lecture 1: Fundamentals of Matlab}
+
+\author{Su, Danyang}
+
+\date[July 2016]{ }
+
+\makebeamertitle
+
+%\pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+%\logo{\pgfuseimage{institution-logo}}
+
+\AtBeginSubsection[]{%
+  \frame<beamer>{ 
+    \frametitle{Outline}   
+    \tableofcontents[currentsection,currentsubsection] 
+  }
+}
+
+%\beamerdefaultoverlayspecification{<+->}
+\begin{frame}{What Is Matlab:}
+
+\begin{itemize}
+\item High-level programing language: between C++ and Stata
+\item Commonly used in numerical analysis, and visualization.
+\item Data are stored as matrices (for the purpose of this course)
+\item Learning by doing
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pros:}
+
+\begin{itemize}
+\item Vectorization
+\item Powerful toolbox (including visualization, and optimization.
+\item Relatively low cost of learning. 
+\item Flexible and consistent; good for DIY
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cons:}
+
+\begin{itemize}
+\item Vectorization
+\item Not fool-proof
+\item Not fast enough
+\item Not as specialized as Stata
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Types of files:}
+
+\begin{itemize}
+\item Scripts: executable scripts
+\item Functions: called by scripts and other functions
+
+\begin{itemize}
+\item Example: 1 + sqrt(2)
+\end{itemize}
+\item Data: affix .mat, store variables in workspace (save)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Interface:}
+
+\begin{itemize}
+\item Command window: for simple use
+\item Text editors: create/edit .m file
+\item Variable editors: display variables in \textbf{current} workspace
+\end{itemize}
+\end{frame}
+
+\begin{frame}{variables:}
+
+\begin{itemize}
+\item vectors
+
+\begin{lyxcode}
+x~=~zeros(5,2)~+~2{*}ones(5,2);~
+
+\%matrix~size~must~matches.
+
+y~=~zeros(4,1);~
+
+\%always~preallocate~variables
+
+y(1)~=~1;~y(2:3)~=~4;~y(4)~=~{[}{]};~y(5)~=~2==3;~
+
+\%what~does~y~look~like?
+\end{lyxcode}
+\item Cells: a = cell(5); a\{1\} = `Name', a\{2\} = age;
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Basic Operations:}
+
+\begin{itemize}
+\item Scalar operators: (+ - {*} / \textasciicircum{})
+\item Matrix operators: (.{*} ./ {*} / .\textasciicircum{} \textbackslash{})
+
+\begin{itemize}
+\item Quiz: How to express $X=(A)^{-1}B$?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{If:}
+
+\begin{itemize}
+\item If arguments:
+
+\begin{lyxcode}
+if~a<b~
+
+\begin{lyxcode}
+a~=~1;
+\end{lyxcode}
+elseif~a==b~
+
+\begin{lyxcode}
+a~=~2;
+\end{lyxcode}
+else~
+
+\begin{lyxcode}
+a~=~3;
+\end{lyxcode}
+end
+\end{lyxcode}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Iterations:}
+
+\begin{itemize}
+\item For Loop:
+\end{itemize}
+\begin{lyxcode}
+for~i=1:size(x,1)~
+
+\begin{lyxcode}
+for~j=1:size(x,2)~
+
+\begin{lyxcode}
+x(i,j)~=~(i-1){*}size(x,2)~+~j;
+\end{lyxcode}
+end
+\end{lyxcode}
+end
+\end{lyxcode}
+\end{frame}
+
+\begin{frame}{Iterations:}
+
+\begin{itemize}
+\item While loop:
+
+\begin{lyxcode}
+dist~=~1;~\%initial~value~must~not~satisfy~condition
+
+x0~=~1
+
+while~dist>0.01~\%don't~mess~up~the~sign~
+
+\begin{lyxcode}
+x\_new~=~0.9{*}x0~+~0.1{*}f(x0);
+
+dist~=~abs(x\_new-x0);~\%remember~abs
+
+x0~=~x\_new;~\%don't~mess~up~order
+\end{lyxcode}
+end
+\end{lyxcode}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Vectorization:}
+
+\begin{itemize}
+\item Try to vectorize whenever possible (mostly replace for loop):
+
+\begin{lyxcode}
+y~=~0;
+
+for~i=1:4~
+
+\begin{lyxcode}
+y~=~y~+~x1(i)~+~x2(i);
+\end{lyxcode}
+end
+
+y~=~x1{*}x2';
+\end{lyxcode}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Run Into Problem?:}
+
+\begin{itemize}
+\item use function \textbf{help}
+
+\begin{lyxcode}
+help~sum
+\end{lyxcode}
+\item Google search
+\item Read documentation
+\item Ask your friends/me
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some Useful Commands:}
+
+\begin{itemize}
+\item clc: clear display
+\item clear: clear variables
+\item clear all: clear more than just variables.
+\item Ctrl+c: stop ongoing execution 
+\item A(:,1) : ``:'' stands for all
+\item A(index,end-1): index is a vector of indexes or logics, ``end-1''
+second to last column
+\item C = {[}A B{]}; C={[}A;B{]}: append matrices 
+\item kron(A,B): Kronecker product of A and B
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some Useful Commands:}
+
+\begin{itemize}
+\item a<=b: a less than or equal to b
+\item a\textasciitilde{}=b: a not equal to b
+\item a \& b: and condition
+\item a | b: or condition
+\item \textasciitilde{}a: not condition
+\item Comment/uncomment: \%
+\item Section: \%\%
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some Useful Commands:}
+
+\begin{itemize}
+\item eye(n): create identity matrix
+\item diag(A): return diagonal of A
+\item 1:2:8: {[}1 3 5 7{]}: create a matrix that starts with 1 with interval
+2, up to 8. Note that 8 is not 
+\item isempty(A): whether elements in A are empty? 
+
+\begin{itemize}
+\item Quiz: how to evaluate whether A is empty matrix?
+\end{itemize}
+\item isnan(A):whether elements in A are NaN
+\item ans: display most recently unassigned evaluation
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some Useful Commands:}
+
+\begin{itemize}
+\item log(A): element by element log of A
+\item exp(A), sqrt(A), abs(A)
+\item ceil(A): round towards +inf
+\item floor(A): round toward -inf
+\item round(A): round toward nearest integer
+\item norm(A): norm of A
+\item sum(A,d), min(A), max(A)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Random Numbers:}
+
+\begin{itemize}
+\item rng(1)
+\item rand(n,m)
+\item randn(n,m)
+\item randsample(population,k,true,w)
+\item mvnrnd(mu,sigma)
+\item Quiz: how to generate binomial distribution samples without using
+mvnrnd?
+\end{itemize}
+\end{frame}
+
+
+\end{document}

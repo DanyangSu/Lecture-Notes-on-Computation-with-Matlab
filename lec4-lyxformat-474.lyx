@@ -1,0 +1,1007 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usepackage{caption,rotating}
+
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Lecture 4: Debug and Diagnose
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Lec4
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Su, Danyang
+\end_layout
+
+\begin_layout Date
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Either use conference name or its abbreviation.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not really informative to the audience, more for people (including yourself)
+ who are reading the slides online
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+July 2016
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, should be abbreviation of conference name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Debug in Matlab:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The importance can't be overstated
+\end_layout
+
+\begin_layout Itemize
+Matlab is Debug-friendly
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Type of Errors:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basic messed up function arguments
+\end_layout
+
+\begin_layout Itemize
+Advanced messed up function arguments
+\end_layout
+
+\begin_layout Itemize
+Matrix related errors
+\end_layout
+
+\begin_layout Itemize
+Infinite loop
+\end_layout
+
+\begin_layout Itemize
+Poor version control
+\end_layout
+
+\begin_layout Itemize
+Machine limitation
+\end_layout
+
+\begin_layout Itemize
+Hardest: wrong reasoning.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Checkpoint:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pause execution 
+\end_layout
+
+\begin_layout Itemize
+Can be set as conditional checkpoint
+\end_layout
+
+\begin_layout Itemize
+display current workspace and variable value
+\end_layout
+
+\begin_layout Itemize
+clear all will erase checkpoints
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Error:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Makes it easier to understand the reason behind potential errors
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+if sum(isnan(A))>0
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+error('Contains NaN');
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Pause loop
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+if iter > 1000
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+error('Exceeds max iteration')
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+end
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Error:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Try/Catch
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In big loops, difficult to locate error
+\end_layout
+
+\begin_layout Itemize
+Use Try/catch with checkpoint to pinpoint location
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+try
+\end_layout
+
+\begin_layout Plain Layout
+
+	x(i) = y(y>1));
+\end_layout
+
+\begin_layout Plain Layout
+
+catch 
+\end_layout
+
+\begin_layout Plain Layout
+
+	a = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Basic Errors:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Matlab will return error messages
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basic messed up function arguments: f(x) when f(x,y)
+\end_layout
+
+\begin_layout Itemize
+Matrix related errors: (near) non-invertible matrix, mismatch of size
+\end_layout
+
+\begin_layout Itemize
+For built-in functions, always refer to doc
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Matlab will not return error messages
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Messed up arguments: f(x,y,z) when f(y,z,w)
+\end_layout
+
+\begin_layout Itemize
+Other errors: the majority
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Infinite Loops:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Happens in while loop
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Never converge
+\end_layout
+
+\begin_layout Itemize
+Wrong updating orders 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+May also leads to false convergence
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Discrete jump: small increment
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NaN Error:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+It's a bad thing if you have NaN
+\end_layout
+
+\begin_layout Itemize
+Program should alert you ASAP
+\end_layout
+
+\begin_layout Itemize
+Create checkpoint
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+if sum(isnan(A))>0
+\end_layout
+
+\begin_layout Plain Layout
+
+	keyboard
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poor Version Control:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Happens complicated task with varied goals.
+\end_layout
+
+\begin_layout Itemize
+Many versions (still better than working on same files)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+New code runs of old data
+\end_layout
+
+\begin_layout Itemize
+Edit code on old version
+\end_layout
+
+\begin_layout Itemize
+Lose track of which version to use
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poor Version Control:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+My solution:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+set path for common code/data
+\end_layout
+
+\begin_layout Itemize
+re-run entire code 
+\end_layout
+
+\begin_layout Itemize
+keep track of change (e.g.
+ readme.txt)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Duke OIT offers professional version control software
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Timing Running Time:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+tic/toc
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+tic;(main code);toc
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Combine with fpirntf for prettier display
+\end_layout
+
+\begin_layout Itemize
+Use profile
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+profile on -timer real 
+\end_layout
+
+\begin_layout LyX-Code
+[x,y] = meshgrid(0:0.01:pi,0:0.01:pi); 
+\end_layout
+
+\begin_layout LyX-Code
+z = sin(x)+cos(y); 
+\end_layout
+
+\begin_layout LyX-Code
+a = rand(100,1); b = rand(100,1); 
+\end_layout
+
+\begin_layout LyX-Code
+c = interp2(x,y,z,a,b); 
+\end_layout
+
+\begin_layout LyX-Code
+profile viewer
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Timing Running Time:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename lec3/f9.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Machine Limitation:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Inf is just a really large number, and Nan is not-a-number (e.g.
+ inf - inf)
+\end_layout
+
+\begin_layout Itemize
+Matters in optimization 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+exp(1000)/(exp(1000)+1) = NaN
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Normalization
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+exp(500)/(exp(500)+exp(-500)) = 1
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Optimization: increment
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rescale
+\end_layout
+
+\begin_layout Itemize
+0:0.01:1 instead of 0:100:10000
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Wrong Reasoning:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Hard to detect: replication doesn't publish (unlike physics)
+\end_layout
+
+\begin_layout Itemize
+Happens all the time and to famous economists
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The Reinhart-Rogoff error
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Run the code line by line several times (comment code!)
+\end_layout
+
+\begin_layout Itemize
+Feed fake data
+\end_layout
+
+\begin_layout Itemize
+Start off simple case then make it more complicated
+\end_layout
+
+\begin_layout Itemize
+Clean up data
+\end_layout
+
+\begin_layout Itemize
+Review theory
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\end_body
+\end_document

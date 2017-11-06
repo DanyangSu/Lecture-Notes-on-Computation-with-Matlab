@@ -1,0 +1,1224 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\usepackage{caption,rotating}
+
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Lecture 7: Learning Slurm and NLOpt
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Lec7
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Su, Danyang
+\end_layout
+
+\begin_layout Date
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Either use conference name or its abbreviation.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not really informative to the audience, more for people (including yourself)
+ who are reading the slides online
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+July 2016
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, should be abbreviation of conference name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goal:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Introduce parallel computing
+\end_layout
+
+\begin_layout Itemize
+Set up Slurm
+\end_layout
+
+\begin_layout Itemize
+Learn how to bootstrap
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Parallel Computing:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Matlab functions: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+parfor: not really relevant
+\end_layout
+
+\begin_layout Itemize
+GPU computing: a bit complicated (but might make a difference)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Refer to gpu computing page.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Too expensive
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Slurm:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Duke university-wise clustering service.
+ 
+\end_layout
+
+\begin_layout Itemize
+IMHO: better than econ department service
+\end_layout
+
+\begin_layout Itemize
+Reference: 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+https://wiki.duke.edu/display/SCSC/SLURM+Queueing+System
+\end_layout
+
+\begin_layout Itemize
+https://wiki.duke.edu/display/SCSC/Training
+\end_layout
+
+\begin_layout Itemize
+Linux: http://swc-osg-workshop.github.io/2015-10-27-duke/contents.html
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Prerequisite:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Account
+\end_layout
+
+\begin_layout Itemize
+PuTTY
+\end_layout
+
+\begin_layout Itemize
+FileZilla
+\end_layout
+
+\begin_layout Itemize
+GUI software: Cygwin64 Terminal
+\end_layout
+
+\begin_layout Itemize
+Duke VPN if off campus
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Setup PuTTY:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename lec7/f2.PNG
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+PuTTY Interface:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename lec7/f3.PNG
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+PuTTY Interface:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename lec7/f4.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Prelim on Linux:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Linux is a tree structure: root
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+sub dir...
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+no use of extension (unlike windows)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+ls: listing of files
+\end_layout
+
+\begin_layout Itemize
+cd dir: go to the directory 
+\begin_inset Quotes eld
+\end_inset
+
+dir
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+cd ..: go one up in the tree
+\end_layout
+
+\begin_layout Itemize
+pwd: show current dir
+\end_layout
+
+\begin_layout Itemize
+cd $HOME go to home dir (Stata also borrows some syntax) 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Transfer Files to/from Server:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+FileZilla (but you can use other alternatives as well)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename lec7/f1.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Linux Command with Slurm:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+srun: execute a command
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+http://www.schedmd.com/slurmdocs/srun.html
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+-: short options (e.g.
+ -o slurm.out)
+\end_layout
+
+\begin_layout Itemize
+–: long options (e.g.
+ –output=slurm.out)
+\end_layout
+
+\begin_layout Itemize
+srun /opt/apps/matlabR2015a/bin/matlab 
+\begin_inset Newline newline
+\end_inset
+
+-nodisplay -nodesktop -nosplash 
+\begin_inset Newline newline
+\end_inset
+
+-singleCompThread -nojvm -r 
+\begin_inset Newline newline
+\end_inset
+
+"rank=$SLURM_ARRAY_TASK_ID;t_m;quit" 
+\end_layout
+
+\begin_layout Itemize
+Matlab related options: see
+\begin_inset Newline newline
+\end_inset
+
+http://www.mathworks.com/help/matlab/ref/matlablinux.html?s_tid=srchtitle
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Set up NLOpt in Linux:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+chmod a+x configure
+\end_layout
+
+\begin_layout Itemize
+./configure –prefix=$HOME/utility/
+\begin_inset Newline newline
+\end_inset
+
+nlopt_compile –enable-shared
+\end_layout
+
+\begin_layout Itemize
+make distclean
+\end_layout
+
+\begin_layout Itemize
+make
+\end_layout
+
+\begin_layout Itemize
+make install
+\end_layout
+
+\begin_layout Itemize
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH
+\begin_inset Newline newline
+\end_inset
+
+}:$HOME/utility/nlopt_compile/lib
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Set up NLOpt in Linux:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+run 
+\begin_inset Quotes eld
+\end_inset
+
+/opt/apps/matlabR2015a/bin/matlab -nosplash -nodisplay -nodesktop
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+in matlab, run 
+\begin_inset Quotes eld
+\end_inset
+
+mex -setup c++
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+rename nlopt_optimize-mex.c as nlopt_optimize.c in the octave folder under
+ nlopt unzipped folder
+\end_layout
+
+\begin_layout Itemize
+in the unzipped folder that store the nlopt_optimize.c file, run 
+\begin_inset Quotes eld
+\end_inset
+
+mex nlopt_optimize.c 
+\begin_inset Newline newline
+\end_inset
+
+$HOME/utility/nlopt_compile/lib/libnlopt.so 
+\begin_inset Newline newline
+\end_inset
+
+-I$HOME/utility/nlopt_compile/include/
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+run 
+\begin_inset Quotes eld
+\end_inset
+
+addpath('/hpchome/econ/ds293/utility/nlopt-2.4.2/octave')
+\begin_inset Quotes erd
+\end_inset
+
+ in matlab
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Run nlopt in command mode:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First you need to tell machine where the library is stored.
+ Run:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/utility/nlopt_compile/lib
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+$HOME/utility/nlopt_compile is the target directory where you install the
+ nlopt
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+run 
+\begin_inset Quotes eld
+\end_inset
+
+/opt/apps/matlabR2015a/bin/matlab -nosplash -nodisplay -nodesktop
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+in matlab, run 
+\begin_inset Quotes eld
+\end_inset
+
+local_machine = 1;rank_id = 1;
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If you take a look at test.m file, you know why do I have to do it.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+run 
+\begin_inset Quotes eld
+\end_inset
+
+test;
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+now you should be able to see the optimized result if you run 
+\begin_inset Quotes eld
+\end_inset
+
+theta_opt
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Remember after you are finished, run 
+\begin_inset Quotes eld
+\end_inset
+
+quit
+\begin_inset Quotes erd
+\end_inset
+
+ to exit Matlab environment 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+My Generic Script for Parallel:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+#!/bin/bash 
+\end_layout
+
+\begin_layout Itemize
+#SBATCH –array=1-20 
+\end_layout
+
+\begin_layout Itemize
+#SBATCH –output=slurm_tm.out 
+\end_layout
+
+\begin_layout Itemize
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH
+\begin_inset Newline newline
+\end_inset
+
+}:$HOME/utility/nlopt_compile/lib 
+\end_layout
+
+\begin_layout Itemize
+srun /opt/apps/matlabR2015a/bin/matlab -nodisplay 
+\begin_inset Newline newline
+\end_inset
+
+-nodesktop -nosplash -singleCompThread -nojvm -r 
+\begin_inset Newline newline
+\end_inset
+
+"rank=$SLURM_ARRAY_TASK_ID;t_m;quit" 
+\end_layout
+
+\begin_layout Itemize
+In workspace type 
+\begin_inset Quotes eld
+\end_inset
+
+sbatch test.q
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Bootstrap:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If you are not econometrician, then bootstrap.
+\end_layout
+
+\begin_layout Itemize
+Idea: resampling and repeated estimation
+\end_layout
+
+\begin_layout Itemize
+use rank as a feed for rng
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Misc.:
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Run Script: sbatch test.q
+\end_layout
+
+\begin_layout Itemize
+check status: squeue -u (NetID) 
+\end_layout
+
+\begin_layout Itemize
+cancel job: scancel (job id or NetID)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

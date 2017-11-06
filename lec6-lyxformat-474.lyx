@@ -1,0 +1,917 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usepackage{caption,rotating}
+
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Lecture 6: Estimation and Optimizers
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Lec6
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, use only with long paper titles
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Su, Danyang
+\end_layout
+
+\begin_layout Date
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Either use conference name or its abbreviation.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not really informative to the audience, more for people (including yourself)
+ who are reading the slides online
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+July 2016
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, should be abbreviation of conference name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Estimation:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Generally non-linear (or you should use Stata)
+\end_layout
+
+\begin_layout Itemize
+Time consuming
+\end_layout
+
+\begin_layout Itemize
+Need to deal with a lot of technical issues
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+GMM:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Essentially it's about matching moments.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\min_{\delta}||\hat{M}-M(\delta)||$
+\end_inset
+
+, normally 
+\begin_inset Formula $l_{2}$
+\end_inset
+
+ or 
+\begin_inset Formula $l_{\infty}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Most of the time you won't be bothered by over-identification.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+GMM:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Average winning bid for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and variance of bid for 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Maximal number of auctions for 
+\begin_inset Formula $m$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\frac{E(X-n)}{E(X-w)}=\gamma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Minimal payment for 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If we don't have bidder id, can we still identify 
+\begin_inset Formula $n$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Estimation with Matlab:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Matlab provides many powerful estimation toolboxes 
+\end_layout
+
+\begin_layout Itemize
+(add examples, local vs global)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Before We Jump In:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Think hard to simplify the problem
+\end_layout
+
+\begin_layout Itemize
+Simplification may depends heavily on problem at hand.
+\end_layout
+
+\begin_layout Itemize
+For complicated method totally worth it
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Can we simply play with moments directly?
+\end_layout
+
+\begin_layout Itemize
+No.
+ Because of 
+\begin_inset Formula $r$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Value iteration, contraction or matrix inversion?
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Technical Issues:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+What is the maximal grid range? 
+\end_layout
+
+\begin_layout Itemize
+How to deal with values outside the box?
+\end_layout
+
+\begin_layout Itemize
+Curse of dimension
+\end_layout
+
+\begin_layout Itemize
+Keep same group of sample.
+\end_layout
+
+\begin_layout Itemize
+Need burn-in period
+\end_layout
+
+\begin_layout Itemize
+Global vs.
+ local
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Matlab Optimizers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Local Optimizers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Gradient-based optimizers: fminsearch
+\end_layout
+
+\begin_layout Itemize
+Non-gradient-based optimizers: fminunc/fmincon
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Global optimizers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Genetic Algorithm
+\end_layout
+
+\begin_layout Itemize
+Multistart
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Matlab offers many configurations
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Find 
+\begin_inset Formula $\arg\max_{x}\sum-(x-2)^{2}$
+\end_inset
+
+ where 
+\begin_inset Formula $x$
+\end_inset
+
+ is a 4-by-1 vector
+\end_layout
+
+\begin_layout LyX-Code
+obj = @(x) sum((x-2).^2)
+\end_layout
+
+\begin_layout LyX-Code
+options = optimset('Display','iter','TolX',1e-8);
+\end_layout
+
+\begin_layout LyX-Code
+[x fval] = fminsearch(obj,randn(4,1),options);
+\end_layout
+
+\begin_layout Itemize
+optimize = minimize, so remember to change sign if looking for max
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Function Handles:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+f = @(x,y) x^2+y^2; f(2,3);
+\end_layout
+
+\begin_layout Itemize
+f 1 = @(x,y) [f(x,y);f(x,y)+1];
+\end_layout
+
+\begin_layout Itemize
+Optimizer only takes one inputs
+\end_layout
+
+\begin_layout Itemize
+obj = @(x) my_func(x,parameters)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NLopt:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Much more powerful than Matlab build-in optimizer toolbox
+\end_layout
+
+\begin_layout Itemize
+try 
+\begin_inset Formula $\min_{x}(x-20)^{2}$
+\end_inset
+
+ when 
+\begin_inset Formula $x$
+\end_inset
+
+ is a 1-by-40 vector.
+\end_layout
+
+\begin_layout Itemize
+Runs on C++, so it's faster.
+ 
+\end_layout
+
+\begin_layout Itemize
+Installation is subtle (for non-CS people)
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Installation of NLopt on Windows:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Install skd7/visual studio
+\end_layout
+
+\begin_layout Itemize
+run cmd mode in skd7/visual studio
+\end_layout
+
+\begin_layout Itemize
+in the folder where .dll is stored, type lib /def:libnlopt-0.def
+\end_layout
+
+\begin_layout Itemize
+in Matlab, type: mex -setup c++
+\end_layout
+
+\begin_layout Itemize
+mex nlopt_optimize.c path
+\backslash
+nlopt
+\backslash
+libnlopt-0.lib -Ipath
+\backslash
+nlopt 
+\end_layout
+
+\begin_layout Itemize
+copy the dll file to the folder where mexw64 is stored
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Installation of NLopt on Mac:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Install Xcode
+\end_layout
+
+\begin_layout Itemize
+Follow the instruction of the patch page
+\end_layout
+
+\begin_layout Itemize
+Rename nlopt_optimize.c as nlopt_optimize-mex.c in source code (if necessary)
+\end_layout
+
+\begin_layout Itemize
+in terminal run: ./configure --enable-shared MATLAB=
+\begin_inset Newline newline
+\end_inset
+
+/path/MATLAB_R2014b.app MEX=mex_path --prefix=
+\begin_inset Newline newline
+\end_inset
+
+$path/dir MEX_INSTALL_DIR=$path/dir 
+\end_layout
+
+\begin_layout Itemize
+make and make install
+\end_layout
+
+\begin_layout Itemize
+In matlab, addpath('nlopt_dir') and addpath('nlopt_mex_dir')
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Use NLopt:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Example:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+obj = @(x) sum((x-20).^2);
+\end_layout
+
+\begin_layout LyX-Code
+opt.algorithm = NLOPT_LD_BOBYQUE;
+\end_layout
+
+\begin_layout LyX-Code
+opt.min_objective = obj;
+\end_layout
+
+\begin_layout LyX-Code
+opt.verbose = 1;
+\end_layout
+
+\begin_layout LyX-Code
+xopt = nlopt_optimize(opt,randn(40,1));
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+For More information: see NLopt wiki page.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\end_body
+\end_document
